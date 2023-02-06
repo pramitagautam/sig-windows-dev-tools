@@ -2,14 +2,15 @@ As mentioned in the issue https://github.com/kubernetes-sigs/sig-windows-dev-too
 As a solution, I tried qemu plugin in vagrant. 
 Below are the steps, that were done:-
 
-```brew install --cask vagrant
-brew install make gcc qemu
-vagrant plugin install vagrant-qemu
+```
+brew install --cask vagrant
+brew install qemu
 
 echo 'security_driver = "none"' >> /usr/local/etc/libvirt/qemu.conf
 echo "dynamic_ownership = 0" >> /usr/local/etc/libvirt/qemu.conf
 echo "remember_owner = 0" >> /usr/local/etc/libvirt/qemu.conf
 
+vagrant plugin install vagrant-qemu
 vagrant up --provider qemu
 ```
 
