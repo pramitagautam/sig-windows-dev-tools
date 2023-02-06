@@ -2,7 +2,7 @@ As mentioned in the issue https://github.com/kubernetes-sigs/sig-windows-dev-too
 As a solution, I tried qemu plugin in vagrant. 
 Below are the steps, that were done:-
 
-brew install --cask vagrant
+```brew install --cask vagrant
 brew install make gcc qemu
 vagrant plugin install vagrant-qemu
 
@@ -11,12 +11,13 @@ echo "dynamic_ownership = 0" >> /usr/local/etc/libvirt/qemu.conf
 echo "remember_owner = 0" >> /usr/local/etc/libvirt/qemu.conf
 
 vagrant up --provider qemu
+```
 
 The above command was working for arm based boxes.
-But when i use it with the boxes present in the source code that are amd64 based like (2004/ubuntu), VM was not coming up and giving the below error:-
+But when i use it with the boxes present in the source code that are amd64 based like (2004/ubuntu), 
+VM was not coming up and giving the below error:-
 
-```
-DEBUG ssh: == Net-SSH connection debug-level log START ==
+```DEBUG ssh: == Net-SSH connection debug-level log START ==
 DEBUG ssh: D, [2023-02-03T20:44:58.673978 #3375] DEBUG -- net.ssh.transport.session[135d8]: establishing connection to 127.0.0.1:50022
 D, [2023-02-03T20:44:58.674381 #3375] DEBUG -- net.ssh.transport.session[135d8]: connection established
 I, [2023-02-03T20:44:58.674406 #3375]  INFO -- net.ssh.transport.server_version[135ec]: negotiating protocol version
