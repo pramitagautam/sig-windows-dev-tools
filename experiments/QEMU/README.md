@@ -51,12 +51,12 @@ DEBUG ssh: Checking key permissions: /Users/gpramita/.vagrant.d/insecure_private
  INFO ssh:   - Key Path: ["/Users/gpramita/.vagrant.d/insecure_private_key"]
 DEBUG ssh:   - connect_opts: {:auth_methods=>["none", "hostbased", "publickey"], :config=>false, :forward_agent=>false, :send_env=>false, :keys_only=>true, :verify_host_key=>:never, :password=>nil, :port=>50022, :timeout=>15, :user_known_hosts_file=>[], :verbose=>:debug, :logger=>#<Logger:0x00007fb2ed02eae8 @level=0, @progname=nil, @default_formatter=#<Logger::Formatter:0x00007fb2ed02eac0 @datetime_format=nil>, @formatter=nil, @logdev=#<Logger::LogDevice:0x00007fb2ed02ea70 @shift_period_suffix=nil, @shift_size=nil, @shift_age=nil, @filename=nil, @dev=#<StringIO:0x00007fb2ed02eb38>, @binmode=false, @mon_data=#<Monitor:0x00007fb2ed02ea48>, @mon_data_owner_object_id=79360>>, :keys=>["/Users/gpramita/.vagrant.d/insecure_private_key"], :remote_user=>"vagrant"}
  INFO machine: Calling action: read_state on provider QEMU (HDveA27T6Xs)
-
 ```
 
-I raised the issue https://github.com/ppggff/vagrant-qemu/issues/32 for vagrant as using the below command of qemu, the same amd64 ubuntu machine was up and running
+I raised the issue https://github.com/ppggff/vagrant-qemu/issues/32 for vagrant as using the below command for qemu with the same amd64 ubuntu machine was up and running
 
-```qemu-system-aarch64 \
+```
+qemu-system-aarch64 \
         -machine virt,accel=hvf \
         -cpu host \
         -smp 8 \
@@ -64,8 +64,8 @@ I raised the issue https://github.com/ppggff/vagrant-qemu/issues/32 for vagrant 
         -drive if=virtio,cache=none,format=raw,file=./ubuntu.img \
         -cdrom box.img \
         -net user,hostfwd=tcp::10022-:22 -net nic -nographic \
-        -bios QEMU_EFI.fd```
-
+        -bios QEMU_EFI.fd
+```
 
 QEMU_EFI.fd -> curl -L https://releases.linaro.org/components/kernel/uefi-linaro/latest/release/qemu64/QEMU_EFI.fd -o QEMU_EFI.fd
 box.img -> .vagrant.d/boxes/roboxes-VAGRANTSLASH-ubuntu2004/4.2.10/libvirt/box.img
